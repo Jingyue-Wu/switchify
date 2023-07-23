@@ -96,6 +96,8 @@ function App() {
 
     const [songsWithArtists, setSongsWithArtists] = useState([]);
 
+    const [playlistName, setPlaylistName] = useState('');
+
 
     const searchSongs = async (id) => {
         try {
@@ -103,6 +105,8 @@ function App() {
             let offset = 0;
             let allSongs = [];
             let filteredSongs = [];
+
+            setPlaylistName(playlists.find((playlist) => playlist.id === id).name);
 
             for (; ;) {
                 const response = await fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?limit=${limit}&offset=${offset}&additional_types=track%2Cepisode&market=from_token&include_artist_names=true`, {
@@ -144,6 +148,37 @@ function App() {
         }
     };
 
+    const transfer = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch('http://localhost:3001/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: playlistName,
+                    // songsWithArtists,
+                }),
+            });
+
+
+            window.location.href = "http://localhost:3001/api/auth/google";
+
+            if (res.ok) {
+                console.log('Transfer successful!');
+                // Handle any additional logic after the transfer is successful
+            } else {
+                console.log('Transfer failed.');
+                // Handle any error scenarios
+            }
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    };
+
+
+
 
     return (
         <>
@@ -161,7 +196,7 @@ function App() {
                 {songs.map((song, index) => (<li key={`${song.track.id}_${index}`}>{song.track.name}</li>))}
             </ul>
 
-            {songsWithArtists.length > 0 && <a className="underline text-xl bg-gray-200" href="http://localhost:3001/api/auth/google">Transfer</a>}
+            {songsWithArtists.length > 0 && <button className="underline text-xl bg-gray-200" onClick={transfer}>Transfer</button>}
 
         </>
     );
