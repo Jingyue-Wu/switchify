@@ -31,7 +31,7 @@ passport.use(
 
       playlist(accessToken);
 
-      // done(null, { username: profile.displayName });
+      done(null, { username: profile.displayName });
 
     }
   )

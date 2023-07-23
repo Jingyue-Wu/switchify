@@ -3,7 +3,7 @@ import axios from 'axios';
 export default function playlist(token: any) {
     let data = JSON.stringify({
         "snippet": {
-            "title": "balls3",
+            "title": "hi",
             "description": "test test test"
         }
     });
