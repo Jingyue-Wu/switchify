@@ -10,3 +10,27 @@
 #root {
     margin: 0;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+html {
+    scrollbar-gutter: stable both-edges;
+}
+
+body::-webkit-scrollbar {
+    width: 0.8em;
+    background-color: transparent;
+    overflow-x: hidden;
+}
+
+/* Create custom scrollbar */
+body::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: #9d9d9d;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #e4e4e4;
+}

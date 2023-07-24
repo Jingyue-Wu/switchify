@@ -66,36 +66,36 @@ async function searchVideos(token: any, songName: string, artist: string) {
     }
 }
 
-async function addSongsToPlaylist(token: any, playlistId: string) {
-    try {
-        for (const song of songList) {
-            const videoId = await searchVideos(token, song.name, song.artist);
-            if (videoId) {
-                await addVideoToPlaylist(token, playlistId, videoId);
-            } else {
-                console.log(`No video found for ${song.name} by ${song.artist}`);
-            }
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-
 // async function addSongsToPlaylist(token: any, playlistId: string) {
 //     try {
-//         for (let i = 0; i < songLimit; i++) {
-//             const videoId = await searchVideos(token, songList[i].name, songList[i].artist);
+//         for (const song of songList) {
+//             const videoId = await searchVideos(token, song.name, song.artist);
 //             if (videoId) {
 //                 await addVideoToPlaylist(token, playlistId, videoId);
 //             } else {
-//                 console.log(`No video found for ${songList[i].name} by ${songList[i].artist}`);
+//                 console.log(`No video found for ${song.name} by ${song.artist}`);
 //             }
 //         }
 //     } catch (error) {
 //         console.log(error);
 //     }
 // }
+
+
+async function addSongsToPlaylist(token: any, playlistId: string) {
+    try {
+        for (let i = 0; i < songLimit; i++) {
+            const videoId = await searchVideos(token, songList[i].name, songList[i].artist);
+            if (videoId) {
+                await addVideoToPlaylist(token, playlistId, videoId);
+            } else {
+                console.log(`No video found for ${songList[i].name} by ${songList[i].artist}`);
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 async function addVideoToPlaylist(token: any, playlistId: string, videoId: string) {
     try {

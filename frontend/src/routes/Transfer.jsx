@@ -175,21 +175,70 @@ export default function Transfer() {
 
     return (
         <>
-            {!token ? <a className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words ml-auto mr-1.5' href={`${AUTH_ENDPOINT}?client_id=${SPOTIFY_CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a> :
-                <button className="underline" onClick={logout}>Logout</button>}
+            <header className='navbar fixed top-0 left-0 w-full flex flex-row justify-between items-cente p-10 px-[5vw]'>
+                <a href='/' className='text-[5vw] md:text-[3vw] lg:text-[3vw] text-gray-500'>Switchify</a>
+                {!token ? (
+                    <a className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' href={`${AUTH_ENDPOINT}?client_id=${SPOTIFY_CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
+                ) : (
+                    <button className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' onClick={logout}>Logout</button>
+                )}
+            </header>
 
-            <h1 className='font-bold'>Select Playlist:</h1>
+            <div className='mt-[5em]'>
+                <h1 className='text-[8vw] md:text-[4vw] lg:text-[6vw] break-words mr-1-auto'>Select Your Playlist</h1>
+                <div className='w-[80%] h-[1px] bg-gray-300 m-auto my-5'></div>
+            </div>
+
             <ul>
-                {playlists.map(playlist => <li key={playlist.id}><button onClick={() => searchSongs(playlist.id)}>{playlist.name}</button></li>)}
+                {playlists.map(playlist => <li key={playlist.id}>
+                    <a href="#songs">
+                        <button className='text-[4vw] md:text-[1.5vw] lg:text-[1.5vw] break-words hover:underline' onClick={() => {
+
+                            setTimeout(() => {
+                                history.replaceState(null, null, window.location.pathname);
+                            }, 2);
+                            searchSongs(playlist.id);
+
+                        }}>{playlist.name}</button>
+
+                        <div className='w-[25%] h-[1px] bg-gray-300 m-auto my-5'></div>
+                    </a>
+                </li>)}
             </ul>
 
-            <br />
-            <h1 className='font-bold'>Songs to be transferred:</h1>
-            <ul>
-                {songs.map((song, index) => (<li key={`${song.track.id}_${index}`}>{song.track.name}</li>))}
-            </ul>
+            <div className='mt-24'>
+                <h1 className='text-[8vw] md:text-[4vw] lg:text-[6vw] break-words mr-1-auto' id='songs'>Songs to be transferred</h1>
+                <div className='w-[80%] h-[1px] bg-gray-300 m-auto my-5'></div>
 
-            {songsWithArtists.length > 0 && <button className="underline text-xl bg-gray-200" onClick={transfer}>Transfer</button>}
+                <a href='#convert' className='text-[8vw] md:text-[4vw] lg:text-[6vw] hover:text-gray-400' id='songs'>
+                    <button onClick={() => {
+                        setTimeout(() => {
+                            history.replaceState(null, null, window.location.pathname);
+                        }, 2);
+                    }}>↓</button>
+                </a>
+
+
+                <ul>
+                    {songs.map((song, index) => (<li key={`${song.track.id}_${index}`}>{song.track.name}
+                        <div className='w-[25%] h-[1px] bg-gray-300 m-auto my-2'></div></li>))}
+                </ul>
+            </div>
+
+            <div>
+                {songsWithArtists.length > 0 && <button className="text-[8vw] md:text-[3vw] lg:text-[4vw] break-words mr-1-auto hover:underline my-10" id='convert' onClick={transfer}>Begin Transfer →</button>}
+
+            </div>
+
+
+            <div className='ml-[8vw]'>
+                <div className='w-[90%] h-[1px] bg-gray-300 mr-auto my-10 mb-12'></div>
+
+                <div className='flex flex-row justify-between items-center text-right mr-[8vw]'>
+                    <a href='/' className='text-[5vw] md:text-[2vw] lg:text-[3vw] break-words lg:max-w-[40vw] mr-auto  text-gray-500'>Switchify</a>
+                    <a href="https://github.com/Jingyue-Wu/switchify"><img className="w-10 h-10" src="github.png"></img></a>
+                </div>
+            </div>
         </>
     );
 }
