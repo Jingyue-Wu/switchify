@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 
 export default function Transfer() {
     // Spotify
-    const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-    const REDIRECT_URI = "http://localhost:5173/transfer";
-    const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-    const RESPONSE_TYPE = "token";
-    let SCOPE = 'playlist-read-private playlist-read-collaborative';
+    // const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+    // const REDIRECT_URI = import.meta.env.VITE_SPOTIFY_REDIRECT_URL;
+    // const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+    // const RESPONSE_TYPE = "token";
+    // let SCOPE = 'playlist-read-private playlist-read-collaborative';
     const [token, setToken] = useState("");
 
     useEffect(() => {
@@ -171,14 +171,14 @@ export default function Transfer() {
     };
 
 
-
-
     return (
         <>
             <header className='navbar fixed top-0 left-0 w-full flex flex-row justify-between items-cente p-10 px-[5vw]'>
                 <a href='/' className='text-[5vw] md:text-[3vw] lg:text-[3vw] text-gray-500'>Switchify</a>
                 {!token ? (
-                    <a className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' href={`${AUTH_ENDPOINT}?client_id=${SPOTIFY_CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
+                    // <a className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' href={`${AUTH_ENDPOINT}?client_id=${SPOTIFY_CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
+                    <a className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' href={'http://localhost:3001/api/auth/spotify'}>Login to Spotify</a>
+
                 ) : (
                     <button className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' onClick={logout}>Logout</button>
                 )}
@@ -225,11 +225,7 @@ export default function Transfer() {
                 </ul>
             </div>
 
-            <div>
-                {songsWithArtists.length > 0 && <button className="text-[8vw] md:text-[3vw] lg:text-[4vw] break-words mr-1-auto hover:underline my-10" id='convert' onClick={transfer}>Begin Transfer →</button>}
-
-            </div>
-
+            {songsWithArtists.length > 0 && <button className="text-[8vw] md:text-[3vw] lg:text-[4vw] break-words mr-1-auto hover:underline my-10" id='convert' onClick={transfer}>Begin Transfer →</button>}
 
             <div className='ml-[8vw]'>
                 <div className='w-[90%] h-[1px] bg-gray-300 mr-auto my-10 mb-12'></div>

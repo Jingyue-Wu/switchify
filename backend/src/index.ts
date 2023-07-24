@@ -7,11 +7,44 @@ import authRoutes from './routes/auth';
 import cors from 'cors';
 import { songName, setSongName, songList, setSongList } from './data';
 
+import querystring from 'querystring';
+
+
 require('./strategies/google'); // import passport strategy
 
 
 const app = express();
 const PORT = process.env.PORT;
+
+
+
+
+
+
+
+
+
+
+// spotify api
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
+const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URL;
+const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+const RESPONSE_TYPE = "token";
+let SCOPE = 'playlist-read-private playlist-read-collaborative';
+
+
+
+
+app.get('/api/auth/spotify', (req, res) => {
+    res.redirect(
+        `${AUTH_ENDPOINT}?client_id=${SPOTIFY_CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
+    );
+});
+
+
+
+
+
 
 
 // spotify data
