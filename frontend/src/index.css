@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    background-color: #111414;
+    color: #efefef;
+}
+
+#root {
+    margin: 0;
+}

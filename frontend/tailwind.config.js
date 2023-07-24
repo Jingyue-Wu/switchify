@@ -23,7 +23,8 @@ export default {
       slate: colors.slate,
     },
     fontFamily: {
-      'space-mono': ['"Space Mono"', 'regular'],
+      'ubuntu': ['Ubuntu', 'regular'],
+      'manrope': ['Manrope', 'light'],
     },
   },
   plugins: [],
