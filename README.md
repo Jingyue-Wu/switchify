@@ -11,7 +11,7 @@ Check out the deployed application <a href="https://switchify.vercel.app" target
 
 # To run your own app
 
-1. Clone the repository in your terminal:
+1. Clone the repository in your terminal.
 
    ```bash
    git clone https://github.com/Jingyue-Wu/switchify
@@ -24,6 +24,8 @@ Check out the deployed application <a href="https://switchify.vercel.app" target
    npm install
    ```
 
-3. Setup the environment variables in `.env` following `.env.example`
+3. Setup the environment variables in `.env` following `.env.example`.
   
    Obtain your Spotify and Google API keys and OAuth clients from <a href="https://console.cloud.google.com/" target="_blank">Google Cloud</a> and <a href="https://developer.spotify.com/" target="_blank">Spotify Developers</a>
+
+4. To run on localhost, use `npm run dev` for the frontend and `npm run start` on the backend server in their respective directories.
