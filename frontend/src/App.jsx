@@ -21,7 +21,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route path="/" element={<Home />} />
-                        <Route path="/transfer" element={<Transfer />} />
+                        <Route path="/transfer/" element={<Transfer />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

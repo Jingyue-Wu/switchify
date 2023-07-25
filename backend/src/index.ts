@@ -18,13 +18,6 @@ const PORT = process.env.PORT;
 
 
 
-
-
-
-
-
-
-
 // spotify api
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URL;

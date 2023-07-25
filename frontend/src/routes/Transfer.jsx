@@ -2,17 +2,17 @@ import '../App.css';
 import { useEffect, useState } from 'react';
 
 export default function Transfer() {
-    // Spotify
-    // const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-    // const REDIRECT_URI = import.meta.env.VITE_SPOTIFY_REDIRECT_URL;
-    // const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-    // const RESPONSE_TYPE = "token";
-    // let SCOPE = 'playlist-read-private playlist-read-collaborative';
+
     const [token, setToken] = useState("");
+
+
+
+    //-----------------------------------------------------------------------------------
 
     useEffect(() => {
         const hash = window.location.hash;
-        let token = window.localStorage.getItem("token");
+        // let token = window.localStorage.getItem("token");
+        let token = null;
 
         if (hash) {
             console.log("Logged In");
@@ -20,8 +20,31 @@ export default function Transfer() {
             window.location.hash = "";
             window.localStorage.setItem("token", token);
         }
+
+        else {
+            token = window.localStorage.getItem("token");
+        }
+
+        //-----------------------------------------------------------------------------------
+
+        // useEffect(() => {
+        //     const hash = window.location.hash;
+        //     let token = window.localStorage.getItem("token");
+
+        //     if (hash) {
+        //         console.log("Logged In");
+        //         token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
+        //         window.location.hash = "";
+        //         window.localStorage.setItem("token", token);
+        //     }
+        //     setToken(token);
+        // }, []);
+
+
+
         setToken(token);
     }, []);
+
 
     const logout = () => {
         setToken("");
