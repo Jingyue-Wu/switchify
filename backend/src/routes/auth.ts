@@ -9,7 +9,7 @@ router.get('/google/redirect', passport.authenticate('google', { session: false 
   if (!req.user || !('username' in req.user)) {
     return res.status(401).send('Unauthorized');
   }
-  res.redirect(`http://localhost:5173/transfer/?username=${req.user.username}`);
+  res.redirect(`${process.env.FRONTEND_URL}/transfer/?username=${req.user.username}`);
 });
 
 export default router;
