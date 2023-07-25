@@ -147,7 +147,7 @@ export default function Transfer() {
     const transfer = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('/', {
+            const res = await fetch('https://switchify.onrender.com/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -160,7 +160,7 @@ export default function Transfer() {
 
             if (res.ok) {
                 console.log('Transfer successful!');
-                window.location.href = "/api/auth/google";
+                window.location.href = "https://switchify.onrender.com/api/auth/google";
 
             } else {
                 console.log('Transfer failed.');
@@ -177,7 +177,7 @@ export default function Transfer() {
                 <a href='/' className='text-[5vw] md:text-[3vw] lg:text-[3vw] text-gray-500'>Switchify</a>
                 {!token ? (
                     // <a className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' href={`${AUTH_ENDPOINT}?client_id=${SPOTIFY_CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
-                    <a className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' href={'/api/auth/spotify'}>Login to Spotify</a>
+                    <a className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' href={'https://switchify.onrender.com/api/auth/spotify'}>Login to Spotify</a>
 
                 ) : (
                     <button className='text-[5vw] md:text-[2vw] lg:text-[2vw] break-words hover:underline' onClick={logout}>Logout</button>
